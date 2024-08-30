@@ -18,12 +18,12 @@ public class Bibliotheque {
     // Méthode pour ajouter un document à la bibliothèque
     public void ajouter(Document document) {
         documents.add(document);
-        documentMap.put(document.getTitre(), document); // Utilisation du titre comme clé pour une recherche rapide
+        documentMap.put(document.getTitre(), document);
     }
 
     // Méthode pour rechercher un document par son titre
     public Document rechercher(String titre) {
-        return documentMap.get(titre); // Renvoie le document s'il est trouvé, sinon null
+        return documentMap.get(titre);
     }
 
     // Méthode pour afficher tous les documents dans la bibliothèque

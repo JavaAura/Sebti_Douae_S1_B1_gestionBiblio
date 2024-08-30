@@ -1,4 +1,4 @@
-package present;
+package presentation;
 
 import metier.Bibliotheque;
 import metier.Document;
@@ -10,8 +10,8 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class ConsoleUI {
-    private Bibliotheque bibliotheque;
-    private Scanner scanner;
+    private final Bibliotheque bibliotheque;
+    private final Scanner scanner;
 
     // Constructeur de la classe ConsoleUI
     public ConsoleUI() {
@@ -19,7 +19,7 @@ public class ConsoleUI {
         scanner = new Scanner(System.in);
     }
 
-    // Méthode pour afficher le menu et gérer les choix de l'utilisateur
+    // Méthode pour afficher le menu
     public void afficherMenu() {
         int choix;
         do {
@@ -33,7 +33,7 @@ public class ConsoleUI {
             System.out.print("Veuillez entrer votre choix (1-6) : ");
 
             choix = scanner.nextInt();
-            scanner.nextLine(); // Consommer la nouvelle ligne laissée par nextInt()
+            scanner.nextLine();
 
             switch (choix) {
                 case 1:

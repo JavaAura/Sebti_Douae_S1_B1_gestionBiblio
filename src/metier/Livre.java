@@ -3,14 +3,14 @@ package metier;
 import java.util.Date;
 
 public final class Livre extends Document {
-    private String isbn;
-    private boolean estEmprunte; // Attribut pour suivre l'état d'emprunt
+    private final String isbn;
+    private boolean estEmprunte;
 
     // Constructeur pour initialiser les attributs de Livre
     public Livre(int id, String titre, String auteur, Date datePublication, int nombreDePages, String isbn) {
-        super(id, titre, auteur, datePublication, nombreDePages); // Appel du constructeur de la classe mère (Document)
-        this.isbn = isbn; // Initialisation de l'attribut spécifique à Livre
-        this.estEmprunte = false; // Un livre est initialement disponible
+        super(id, titre, auteur, datePublication, nombreDePages);
+        this.isbn = isbn;
+        this.estEmprunte = false;
     }
 
     // Méthode pour emprunter un livre
