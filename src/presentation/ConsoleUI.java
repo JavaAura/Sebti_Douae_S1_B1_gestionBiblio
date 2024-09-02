@@ -116,13 +116,13 @@ public class ConsoleUI {
 
     // Méthode pour retourner un document
     private void retournerDocument() {
-        System.out.print("Entrez le titre du document à retourner : ");
+        System.out.print("Entrez le titre du document a retourner : ");
         String titre = scanner.nextLine();
         boolean success = bibliotheque.retournerDocument(titre);
         if (success) {
-            System.out.println("Document retourné avec succès !");
+            System.out.println("Document retourne avec succes !");
         } else {
-            System.out.println("Échec du retour.");
+            System.out.println("Echec du retour.");
         }
     }
 
