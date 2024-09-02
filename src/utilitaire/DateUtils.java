@@ -1,21 +1,23 @@
-    package utilitaire;
-    import java.text.ParseException;
-    import java.text.SimpleDateFormat;
-    import java.util.Date;
+package utilitaire;
 
-    public class DateUtils {
-        private static final String DATE_FORMAT = "yyyy-MM-dd";
-        private static final SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
-        public static Date parseDate(String dateStr) {
-            try {
-                return dateFormat.parse(dateStr);
-            } catch (ParseException e) {
-                System.out.println("Erreur de format de date : " + e.getMessage());
-                return null;
-            }
-        }
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-        public static String formatDate(Date date) {
-            return dateFormat.format(date);
+public class DateUtils {
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final DateTimeFormatter CUSTOM_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");
+
+    public static LocalDate parseDate(String dateStr) {
+        try {
+            return LocalDate.parse(dateStr, DATE_FORMATTER);
+        } catch (DateTimeParseException e) {
+            System.out.println("Erreur de format de date : " + e.getMessage());
+            return null;
         }
     }
+
+    public static String formatDate(LocalDate date) {
+        return CUSTOM_FORMATTER.format(date);
+    }
+}

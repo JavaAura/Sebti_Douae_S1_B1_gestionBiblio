@@ -1,12 +1,13 @@
 package metier;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 public final class Magazine extends Document {
     private final int numero;
 
     // Constructeur pour initialiser les attributs de Magazine
-    public Magazine(int id, String titre, String auteur, Date datePublication, int nombreDePages, int numero) {
+    public Magazine(int id, String titre, String auteur, LocalDate datePublication, int nombreDePages, int numero) {
         super(id, titre, auteur, datePublication, nombreDePages);
         this.numero = numero;
     }
@@ -44,7 +45,7 @@ public final class Magazine extends Document {
         System.out.println("ID: " + getId());
         System.out.println("Titre: " + getTitre());
         System.out.println("Auteur: " + getAuteur());
-        System.out.println("Date de Publication: " + getDatePublication());
+        System.out.println("Date de Publication: " + getFormattedDatePublication());
         System.out.println("Nombre de Pages: " + getNombreDePages());
         System.out.println("Numero: " + getNumero());
         System.out.println("Statut: " + (estEmprunte ? "Emprunte" : "Disponible"));

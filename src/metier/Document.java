@@ -1,16 +1,19 @@
 package metier;
 
-import java.util.Date;
+import utilitaire.DateUtils;
+
+import java.time.LocalDate;
+
 
 public abstract class Document {
     protected int id;
     protected String titre;
     protected String auteur;
-    protected Date datePublication;
+    protected LocalDate datePublication;
     protected int nombreDePages;
     protected boolean estEmprunte;
     // Constructeur de la classe Document
-    public Document(int id, String titre, String auteur, Date datePublication, int nombreDePages) {
+    public Document(int id, String titre, String auteur, LocalDate datePublication, int nombreDePages) {
         this.id = id;
         this.titre = titre;
         this.auteur = auteur;
@@ -41,8 +44,11 @@ public abstract class Document {
         return auteur;
     }
 
-    public Date getDatePublication() {
+    public LocalDate getDatePublication() {
         return datePublication;
+    }
+    public String getFormattedDatePublication() {
+        return DateUtils.formatDate(datePublication);
     }
 
     public int getNombreDePages() {

@@ -6,7 +6,7 @@ import metier.Livre;
 import metier.Magazine;
 import utilitaire.DateUtils;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class ConsoleUI {
@@ -76,9 +76,9 @@ public class ConsoleUI {
         System.out.print("Entrez l'auteur : ");
         String auteur = scanner.nextLine();
 
-        System.out.print("Entrez la date de publication (au format YYYY-MM-DD) : ");
+        System.out.print("Entrez la date de publication (au format dd-mm-yyyy) : ");
         String dateStr = scanner.nextLine();
-        Date datePublication = DateUtils.parseDate(dateStr);
+        LocalDate datePublication = DateUtils.parseDate(dateStr);
 
         System.out.print("Entrez le nombre de pages : ");
         int nombreDePages = scanner.nextInt();
