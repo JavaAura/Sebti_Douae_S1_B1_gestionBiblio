@@ -6,9 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 public class Bibliotheque {
-    private List<Document> documents;
-    private Map<String, Document> documentMap;
+    private final List<Document> documents;
+    private final Map<String, Document> documentMap;
+    private static int currentId = 0;
 
+    public static synchronized int generateId() {
+        return ++currentId;
+    }
     // Constructeur de la classe Bibliotheque
     public Bibliotheque() {
         this.documents = new ArrayList<>();

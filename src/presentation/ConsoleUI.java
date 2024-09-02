@@ -66,9 +66,7 @@ public class ConsoleUI {
         int type = scanner.nextInt();
         scanner.nextLine();
 
-        System.out.print("Entrez l'ID : ");
-        int id = scanner.nextInt();
-        scanner.nextLine();
+        int id = Bibliotheque.generateId();
 
         System.out.print("Entrez le titre : ");
         String titre = scanner.nextLine();
