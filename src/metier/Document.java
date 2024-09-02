@@ -8,7 +8,7 @@ public abstract class Document {
     protected String auteur;
     protected Date datePublication;
     protected int nombreDePages;
-
+    protected boolean estEmprunte;
     // Constructeur de la classe Document
     public Document(int id, String titre, String auteur, Date datePublication, int nombreDePages) {
         this.id = id;
@@ -16,6 +16,7 @@ public abstract class Document {
         this.auteur = auteur;
         this.datePublication = datePublication;
         this.nombreDePages = nombreDePages;
+        this.estEmprunte = false;
     }
 
     // Méthode abstraite pour emprunter un document

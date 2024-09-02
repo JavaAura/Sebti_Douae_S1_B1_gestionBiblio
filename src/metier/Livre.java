@@ -4,13 +4,11 @@ import java.util.Date;
 
 public final class Livre extends Document {
     private final String isbn;
-    private boolean estEmprunte;
 
     // Constructeur pour initialiser les attributs de Livre
     public Livre(int id, String titre, String auteur, Date datePublication, int nombreDePages, String isbn) {
         super(id, titre, auteur, datePublication, nombreDePages);
         this.isbn = isbn;
-        this.estEmprunte = false;
     }
 
     // Méthode pour emprunter un livre
@@ -18,10 +16,10 @@ public final class Livre extends Document {
     protected boolean emprunter() {
         if (!estEmprunte) {
             estEmprunte = true;
-            System.out.println("Le livre '" + getTitre() + "' a été emprunté.");
+            System.out.println("Le livre '" + getTitre() + "' a ete emprunte.");
             return true;
         } else {
-            System.out.println("Le livre '" + getTitre() + "' est déjà emprunté.");
+            System.out.println("Le livre '" + getTitre() + "' est deja emprunte.");
             return false;
         }
     }
@@ -31,10 +29,10 @@ public final class Livre extends Document {
     protected boolean retourner() {
         if (estEmprunte) {
             estEmprunte = false;
-            System.out.println("Le livre '" + getTitre() + "' a été retourné.");
+            System.out.println("Le livre '" + getTitre() + "' a ete retourne.");
             return true;
         } else {
-            System.out.println("Le livre '" + getTitre() + "' n'est pas emprunté.");
+            System.out.println("Le livre '" + getTitre() + "' n'est pas emprunte.");
             return false;
         }
     }
@@ -49,7 +47,7 @@ public final class Livre extends Document {
         System.out.println("Date de Publication: " + getDatePublication());
         System.out.println("Nombre de Pages: " + getNombreDePages());
         System.out.println("ISBN: " + getIsbn());
-        System.out.println("Statut: " + (estEmprunte ? "Emprunté" : "Disponible"));
+        System.out.println("Statut: " + (estEmprunte ? "Emprunte" : "Disponible"));
     }
 
     // Getter pour l'attribut ISBN

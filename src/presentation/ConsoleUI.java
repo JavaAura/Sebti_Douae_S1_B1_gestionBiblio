@@ -23,7 +23,7 @@ public class ConsoleUI {
     public void afficherMenu() {
         int choix;
         do {
-            System.out.println("\n=== Menu de la Bibliothèque ===");
+            System.out.println("\n=== Menu de la Bibliotheque ===");
             System.out.println("1. Ajouter un document");
             System.out.println("2. Emprunter un document");
             System.out.println("3. Retourner un document");
@@ -52,10 +52,10 @@ public class ConsoleUI {
                     rechercherDocument();
                     break;
                 case 6:
-                    System.out.println("Merci d'avoir utilisé la bibliothèque !");
+                    System.out.println("Merci d'avoir utilise la bibliotheque !");
                     break;
                 default:
-                    System.out.println("Choix invalide. Veuillez réessayer.");
+                    System.out.println("Choix invalide. Veuillez reessayer.");
             }
         } while (choix != 6);
     }
@@ -64,11 +64,11 @@ public class ConsoleUI {
     private void ajouterDocument() {
         System.out.print("Entrez le type de document (1: Livre, 2: Magazine) : ");
         int type = scanner.nextInt();
-        scanner.nextLine(); // Consommer la nouvelle ligne
+        scanner.nextLine();
 
         System.out.print("Entrez l'ID : ");
         int id = scanner.nextInt();
-        scanner.nextLine(); // Consommer la nouvelle ligne
+        scanner.nextLine();
 
         System.out.print("Entrez le titre : ");
         String titre = scanner.nextLine();
@@ -82,21 +82,21 @@ public class ConsoleUI {
 
         System.out.print("Entrez le nombre de pages : ");
         int nombreDePages = scanner.nextInt();
-        scanner.nextLine(); // Consommer la nouvelle ligne
+        scanner.nextLine();
 
         if (type == 1) { // Ajouter un livre
             System.out.print("Entrez l'ISBN : ");
             String isbn = scanner.nextLine();
             Livre livre = new Livre(id, titre, auteur, datePublication, nombreDePages, isbn);
             bibliotheque.ajouter(livre);
-            System.out.println("Livre ajouté avec succès !");
+            System.out.println("Livre ajoute avec succes !");
         } else if (type == 2) { // Ajouter un magazine
-            System.out.print("Entrez le numéro : ");
+            System.out.print("Entrez le numero : ");
             int numero = scanner.nextInt();
             scanner.nextLine(); // Consommer la nouvelle ligne
             Magazine magazine = new Magazine(id, titre, auteur, datePublication, nombreDePages, numero);
             bibliotheque.ajouter(magazine);
-            System.out.println("Magazine ajouté avec succès !");
+            System.out.println("Magazine ajoute avec succes !");
         } else {
             System.out.println("Type de document invalide.");
         }
@@ -108,9 +108,9 @@ public class ConsoleUI {
         String titre = scanner.nextLine();
         boolean success = bibliotheque.emprunterDocument(titre);
         if (success) {
-            System.out.println("Document emprunté avec succès !");
+            System.out.println("Document emprunte avec succes !");
         } else {
-            System.out.println("Échec de l'emprunt.");
+            System.out.println("Echec de l'emprunt.");
         }
     }
 
@@ -133,13 +133,13 @@ public class ConsoleUI {
 
     // Méthode pour rechercher un document par son titre
     private void rechercherDocument() {
-        System.out.print("Entrez le titre du document à rechercher : ");
+        System.out.print("Entrez le titre du document a rechercher : ");
         String titre = scanner.nextLine();
         Document document = bibliotheque.rechercher(titre);
         if (document != null) {
             document.afficherDetails();
         } else {
-            System.out.println("Document non trouvé.");
+            System.out.println("Document non trouve.");
         }
     }
 }

@@ -29,7 +29,7 @@ public class Bibliotheque {
     // Méthode pour afficher tous les documents dans la bibliothèque
     public void afficherTousLesDocuments() {
         if (documents.isEmpty()) {
-            System.out.println("La bibliothèque ne contient aucun document.");
+            System.out.println("La bibliotheque ne contient aucun document.");
         } else {
             for (Document doc : documents) {
                 doc.afficherDetails();
@@ -43,7 +43,7 @@ public class Bibliotheque {
         if (document != null) {
             return document.emprunter();
         }
-        System.out.println("Document non trouvé.");
+        System.out.println("Document non trouve.");
         return false;
     }
 
@@ -53,7 +53,7 @@ public class Bibliotheque {
         if (document != null) {
             return document.retourner();
         }
-        System.out.println("Document non trouvé.");
+        System.out.println("Document non trouve.");
         return false;
     }
 }
