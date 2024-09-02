@@ -35,9 +35,10 @@ public class Bibliotheque {
         if (documents.isEmpty()) {
             System.out.println("La bibliotheque ne contient aucun document.");
         } else {
-            for (Document doc : documents) {
+            /* for (Document doc : documents) {
                 doc.afficherDetails();
-            }
+            }*/
+            documents.forEach(doc -> doc.afficherDetails());
         }
     }
 
@@ -49,6 +50,7 @@ public class Bibliotheque {
         }
         System.out.println("Document non trouve.");
         return false;
+
     }
 
     // Méthode pour retourner un document

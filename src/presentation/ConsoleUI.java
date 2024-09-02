@@ -7,16 +7,31 @@ import metier.Magazine;
 import utilitaire.DateUtils;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.HashMap;
+import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ConsoleUI {
     private final Bibliotheque bibliotheque;
     private final Scanner scanner;
+    private final Map<Integer, Runnable> menuOptions;
 
     // Constructeur de la classe ConsoleUI
     public ConsoleUI() {
         bibliotheque = new Bibliotheque();
         scanner = new Scanner(System.in);
+        menuOptions = new HashMap<>();
+        menuOptions.put(1, () -> ajouterDocument());
+        menuOptions.put(2, () -> emprunterDocument());
+        menuOptions.put(3, () -> retournerDocument());
+        menuOptions.put(4, () -> afficherTousLesDocuments());
+        menuOptions.put(5, () -> rechercherDocument());
+
+        menuOptions.put(6, () -> System.out.println("Merci d'avoir utilise la bibliotheque !"));
+
     }
 
     // Méthode pour afficher le menu
@@ -35,63 +50,63 @@ public class ConsoleUI {
             choix = scanner.nextInt();
             scanner.nextLine();
 
-            switch (choix) {
-                case 1:
-                    ajouterDocument();
-                    break;
-                case 2:
-                    emprunterDocument();
-                    break;
-                case 3:
-                    retournerDocument();
-                    break;
-                case 4:
-                    afficherTousLesDocuments();
-                    break;
-                case 5:
-                    rechercherDocument();
-                    break;
-                case 6:
-                    System.out.println("Merci d'avoir utilise la bibliotheque !");
-                    break;
-                default:
-                    System.out.println("Choix invalide. Veuillez reessayer.");
+            Runnable action = menuOptions.get(choix);
+            if (action != null) {
+                action.run();
+            } else {
+                System.out.println("Choix invalide. Veuillez reessayer.");
             }
         } while (choix != 6);
     }
+    private LocalDate lireDate() {
+        while (true) {
+            System.out.print("Entrez la date de publication (au format dd-MM-yyyy) : ");
+            String dateStr = scanner.nextLine();
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                return LocalDate.parse(dateStr, formatter);
+            } catch (DateTimeParseException e) {
+                System.out.println("Format de date invalide. Veuillez reessayer.");
+            }
+        }
+    }
 
+    private int lireNombreEntier(String message) {
+        while (true) {
+            System.out.print(message);
+            try {
+                return scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Entree invalide. Veuillez entrer un nombre entier.");
+                scanner.next(); // Consomme l'entrée incorrecte
+            }
+        }
+    }
+
+    private String lireChaine(String message) {
+        System.out.print(message);
+        return scanner.nextLine();
+    }
     // Méthode pour ajouter un document
     private void ajouterDocument() {
-        System.out.print("Entrez le type de document (1: Livre, 2: Magazine) : ");
-        int type = scanner.nextInt();
-        scanner.nextLine();
-
+        int type = lireNombreEntier("Entrez le type de document (1: Livre, 2: Magazine) : ");
         int id = Bibliotheque.generateId();
 
-        System.out.print("Entrez le titre : ");
-        String titre = scanner.nextLine();
-
-        System.out.print("Entrez l'auteur : ");
-        String auteur = scanner.nextLine();
-
-        System.out.print("Entrez la date de publication (au format dd-mm-yyyy) : ");
-        String dateStr = scanner.nextLine();
-        LocalDate datePublication = DateUtils.parseDate(dateStr);
-
-        System.out.print("Entrez le nombre de pages : ");
-        int nombreDePages = scanner.nextInt();
+        String titre = lireChaine("Entrez le titre : ");
         scanner.nextLine();
+        String auteur = lireChaine("Entrez l'auteur : ");
+        LocalDate datePublication = lireDate();
+        int nombreDePages = lireNombreEntier("Entrez le nombre de pages : ");
 
         if (type == 1) { // Ajouter un livre
-            System.out.print("Entrez l'ISBN : ");
-            String isbn = scanner.nextLine();
+            String isbn = lireChaine("Entrez l'ISBN : ");
+            scanner.nextLine();
             Livre livre = new Livre(id, titre, auteur, datePublication, nombreDePages, isbn);
             bibliotheque.ajouter(livre);
             System.out.println("Livre ajoute avec succes !");
         } else if (type == 2) { // Ajouter un magazine
-            System.out.print("Entrez le numero : ");
-            int numero = scanner.nextInt();
-            scanner.nextLine(); // Consommer la nouvelle ligne
+            int numero = lireNombreEntier("Entrez le numero : ");
+            scanner.nextLine();
             Magazine magazine = new Magazine(id, titre, auteur, datePublication, nombreDePages, numero);
             bibliotheque.ajouter(magazine);
             System.out.println("Magazine ajoute avec succes !");
@@ -102,7 +117,7 @@ public class ConsoleUI {
 
     // Méthode pour emprunter un document
     private void emprunterDocument() {
-        System.out.print("Entrez le titre du document à emprunter : ");
+        System.out.print("Entrez le titre du document a emprunter : ");
         String titre = scanner.nextLine();
         boolean success = bibliotheque.emprunterDocument(titre);
         if (success) {
