@@ -36,7 +36,9 @@ public class ConsoleUI {
 
     // Méthode pour afficher le menu
     public void afficherMenu() {
-        int choix;
+        int choix = 0;
+        boolean validInput = false;
+
         do {
             System.out.println("\n=== Menu de la Bibliotheque ===");
             System.out.println("1. Ajouter un document");
@@ -47,8 +49,15 @@ public class ConsoleUI {
             System.out.println("6. Quitter");
             System.out.print("Veuillez entrer votre choix (1-6) : ");
 
-            choix = scanner.nextInt();
-            scanner.nextLine();
+            while (!validInput) {
+                try {
+                    choix = Integer.parseInt(scanner.nextLine());
+                    validInput = true; // Input is valid, exit the loop
+                } catch (NumberFormatException e) {
+                    System.out.println("Entrée invalide. Veuillez entrer un nombre entier.");
+                    System.out.print("Veuillez entrer votre choix (1-6) : ");
+                }
+            }
 
             Runnable action = menuOptions.get(choix);
             if (action != null) {
@@ -56,8 +65,11 @@ public class ConsoleUI {
             } else {
                 System.out.println("Choix invalide. Veuillez reessayer.");
             }
+            // Reset validInput for the next iteration
+            validInput = false;
         } while (choix != 6);
     }
+
     private LocalDate lireDate() {
         while (true) {
             System.out.print("Entrez la date de publication (au format dd-MM-yyyy) : ");
@@ -98,9 +110,8 @@ public class ConsoleUI {
         String auteur = lireChaine("Entrez l'auteur : ");
         LocalDate datePublication = lireDate();
         int nombreDePages = lireNombreEntier("Entrez le nombre de pages : ");
-
-        if (type == 1) { // Ajouter un livre
             scanner.nextLine();
+        if (type == 1) { // Ajouter un livre
             String isbn = lireChaine("Entrez l'ISBN : ");
             Livre livre = new Livre(id, titre, auteur, datePublication, nombreDePages, isbn);
             bibliotheque.ajouter(livre);
