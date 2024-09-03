@@ -91,16 +91,17 @@ public class ConsoleUI {
     private void ajouterDocument() {
         int type = lireNombreEntier("Entrez le type de document (1: Livre, 2: Magazine) : ");
         int id = Bibliotheque.generateId();
+        scanner.nextLine();
 
         String titre = lireChaine("Entrez le titre : ");
-        scanner.nextLine();
+
         String auteur = lireChaine("Entrez l'auteur : ");
         LocalDate datePublication = lireDate();
         int nombreDePages = lireNombreEntier("Entrez le nombre de pages : ");
 
         if (type == 1) { // Ajouter un livre
-            String isbn = lireChaine("Entrez l'ISBN : ");
             scanner.nextLine();
+            String isbn = lireChaine("Entrez l'ISBN : ");
             Livre livre = new Livre(id, titre, auteur, datePublication, nombreDePages, isbn);
             bibliotheque.ajouter(livre);
             System.out.println("Livre ajoute avec succes !");
