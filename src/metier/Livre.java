@@ -14,7 +14,7 @@ public final class Livre extends Document {
 
     // Méthode pour emprunter un livre
     @Override
-    protected boolean emprunter() {
+    public boolean emprunter() {
         if (!estEmprunte) {
             estEmprunte = true;
             System.out.println("Le livre '" + getTitre() + "' a ete emprunte.");
@@ -27,7 +27,7 @@ public final class Livre extends Document {
 
     // Méthode pour retourner un livre
     @Override
-    protected boolean retourner() {
+    public boolean retourner() {
         if (estEmprunte) {
             estEmprunte = false;
             System.out.println("Le livre '" + getTitre() + "' a ete retourne.");

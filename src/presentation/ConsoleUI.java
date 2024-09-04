@@ -54,7 +54,7 @@ public class ConsoleUI {
                     choix = Integer.parseInt(scanner.nextLine());
                     validInput = true; // Input is valid, exit the loop
                 } catch (NumberFormatException e) {
-                    System.out.println("Entrée invalide. Veuillez entrer un nombre entier.");
+                    System.out.println("Entree invalide. Veuillez entrer un nombre entier.");
                     System.out.print("Veuillez entrer votre choix (1-6) : ");
                 }
             }

@@ -14,7 +14,7 @@ public final class Magazine extends Document {
 
     // Méthode pour emprunter un magazine
     @Override
-    protected boolean emprunter() {
+    public boolean emprunter() {
         if (!estEmprunte) {
             estEmprunte = true;
             System.out.println("Le magazine '" + getTitre() + "' (Numero: " + numero + ") a ete emprunte.");
@@ -27,7 +27,7 @@ public final class Magazine extends Document {
 
     // Méthode pour retourner un magazine
     @Override
-    protected boolean retourner() {
+    public boolean retourner() {
         if (estEmprunte) {
             estEmprunte = false;
             System.out.println("Le magazine '" + getTitre() + "' (Numero: " + numero + ") a ete retourne.");

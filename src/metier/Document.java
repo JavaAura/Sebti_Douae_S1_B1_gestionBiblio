@@ -23,10 +23,10 @@ public abstract class Document {
     }
 
     // Méthode abstraite pour emprunter un document
-    protected abstract boolean emprunter();
+    public abstract boolean emprunter();
 
     // Méthode abstraite pour retourner un document
-    protected abstract boolean retourner();
+    public abstract boolean retourner();
 
     // Méthode abstraite pour afficher les détails du document
     public abstract void afficherDetails();
